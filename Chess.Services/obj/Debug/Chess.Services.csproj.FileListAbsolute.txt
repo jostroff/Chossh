@@ -1,0 +1,5 @@
+E:\Programing\SVN\TheNextChess\Chess.Services\bin\Debug\Chess.Services.dll
+E:\Programing\SVN\TheNextChess\Chess.Services\bin\Debug\Chess.Services.pdb
+E:\Programing\SVN\TheNextChess\Chess.Services\obj\Debug\Chess.Services.csprojResolveAssemblyReference.cache
+E:\Programing\SVN\TheNextChess\Chess.Services\obj\Debug\Chess.Services.dll
+E:\Programing\SVN\TheNextChess\Chess.Services\obj\Debug\Chess.Services.pdb

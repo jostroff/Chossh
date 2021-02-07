@@ -1,0 +1,216 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Lato, sans-serif;
+    display: flex;
+    justify-content: center;
+    background: url("../Content/Images/chess-backgr.jpg")
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+table {
+    margin: 0 auto;
+}
+
+td {
+    width: 4.5vw;
+    height: 4.5vw;
+    display: inline-block;
+    text-align: center;
+    line-height: 4.5vw;
+}
+
+img {
+    width: 100%;
+    vertical-align: top;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul#messages {
+    text-align: left;
+    overflow-y: scroll;
+    height: 75vh;
+}
+
+ul#messages::-webkit-scrollbar-thumb {
+    background-color: red;
+    color: red;
+    border-radius: 50%;
+
+}
+
+    ul#messages::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px lime;
+        background-color: greenyellow;
+    }
+
+    ul#messages::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    ul#messages::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 10px blue;
+        background-color: orange;
+        width: 1px;
+    }
+
+button#invite-button {
+    width: 25%;
+    padding: 5px;
+    border-radius: 23px;
+    border-style: none;
+    background-color: greenyellow;
+    margin: 7px;
+    color: black;
+    font-size: 11px;
+    float: right;
+    margin: 0;
+} 
+
+ul#messages li {
+    color: gainsboro;
+    background-color: darkolivegreen;
+    margin: 2px;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+ul#messages li:first-child {
+    animation-name: first-message;
+    animation-duration: 1s;
+    animation-iteration-count: 2;
+
+}
+
+@keyframes first-message {
+    0% {
+        padding: 4px;
+    }
+    50% {
+        padding: 0px;
+    }
+    100% {
+        padding: 4px;
+    }
+}
+
+li {
+    list-style-type: none;
+}
+
+.online-user {
+    margin: 0px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    display: inline-block;
+    width: 70%;
+    padding: 4px;
+}
+
+#online-users-title {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 3vw;
+}
+
+#online-users-wrapper {
+    padding: 5px;
+    width: 20%;
+    background-color: orange;
+    opacity: 0.9;
+}
+
+#chessboard {
+    border-radius: 5px;
+    width: 60%;
+    background-color: greenyellow;
+}
+
+#message-box {
+    width: 20%;
+    background-color: deeppink;
+    padding: 5px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+input#text {
+    height: 30px;
+    width: 90%;
+    margin: 5px;
+}
+
+button#send-message {
+    width: 90%;
+    padding: 5px;
+    border-radius: 23px;
+    border-style: none;
+    background-color: greenyellow;
+    margin: 7px;
+    color: darkorchid;
+    font-size: 2vw;
+}
+
+#invit_wrapper {
+    display: block;
+    position: absolute;
+    top: 65px;
+    background-color: darkolivegreen;
+    color: wheat;
+    border-radius: 10px;
+    opacity: 0.9;
+    text-align: center;
+    padding: 5px;
+    left: 42%;
+}
+
+    #invit_wrapper button {
+        padding: 2px 5px;
+        border-radius: 10px;
+        border-style: none;
+        background-color: green;
+        color: wheat;
+    }
+
+footer {
+    width: 100%;
+    text-align: center;
+    color: wheat;
+}
+
+.my-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+
+}

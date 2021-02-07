@@ -1,0 +1,278 @@
+﻿@section Scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script src="~/Scripts/Chessboard/chessboard-gen.js"></script>
+}
+
+@{
+    ViewBag.Title = "TheNextChess";
+}
+
+<div id="online-users-wrapper">
+    <h2 id="online-users-title">Online users:</h2>
+    <ul id="online-users">
+
+    </ul>
+</div>
+
+<div id="invit_wrapper" style="display: none">
+    <h2 id="invitation"></h2>
+    <button id="confirm-btn">Confirm</button>
+    <button id="cancel-btn">Cancel</button>
+</div>
+
+<div id="chessboard">
+    <table id="board"></table>
+</div>
+
+<div id="message-box" style="display: none">
+    <input id="text" type="text" />
+    <button id="send-message">Send Message</button>
+    <div id="messages-wrapper">
+        <ul id="messages"></ul>
+    </div>
+</div>
+<script>
+
+
+
+    $(function () {
+        sessionStorage.setItem("username", "@User.Identity.Name");
+
+        $.connection.hub.start();
+
+        let data;
+
+        let game = $.connection.game;
+
+        $('#message-box button').on('click', sendMessageToOponent);
+        $('#send-command').on('click', makeMove)
+
+        function sendMessageToOponent() {
+            let message = $('#text');
+            let oponentId = sessionStorage.getItem('oponentId');
+            game.server.sendMessageToOponent(message.val(), oponentId);
+            let listItem = $('<li>').text(`Me: ${message.val()}`);
+            $('#messages').prepend(listItem);
+            message.val('');
+
+        }
+
+        function recieveMessage(message, sender) {
+            let myUsername = sessionStorage.getItem('username');
+            let listItem = $('<li>').text(`${sender}: ${message}`);
+            $('#messages').prepend(listItem);
+        }
+
+        function listUsers(users) {
+            let ul = $('#online-users').empty();
+            users = users.filter(x => x !== sessionStorage.getItem('username'));
+            for (let user of users) {
+                let listItem = $('<li>');
+                let username = $('<p>').addClass('online-user').text(user);
+                let inviteButton = $('<button>').attr('id', 'invite-button').text('Invite').on('click', function () {
+                    game.server.invite(user);
+                });
+
+                listItem.append(username, inviteButton);
+                ul.append(listItem);
+            }
+        }
+
+        function removeUser(user) {
+            $(`li:contains(${user})`).remove();
+        }
+
+        function recieveInvitation(host) {
+            let invitation = $('#invitation').attr('data-conn-id', host.ConnectionId).text(`Invitation from ${host.Username}`);
+            let wrapper = $('#invit_wrapper');
+            $('#confirm-btn').on('click', function () {
+                sendConfirmation(invitation.attr('data-conn-id'));
+            });
+
+            $('#cancel-btn').on('click', function () {
+                wrapper.hide();
+            });
+
+            wrapper.show();
+
+        }
+
+        function sendConfirmation(hostId) {
+            sessionStorage.setItem('oponentId', hostId);
+            game.server.sendConfirmation(hostId);
+        }
+
+        function recieveConfirmation(user) {
+            sessionStorage.setItem('oponentId', user.ConnectionId);
+            let invitation = $('#invitation').attr('data-conn-id', user.ConnectionId).text(`Invitation confirmed from ${user.Username}`);
+            $('#invit_wrapper').show();
+        }
+
+        function getMyUsername(username) {
+            sessionStorage.setItem('username', username);
+        }
+
+        function hideInvitation() {
+            $('#invit_wrapper').hide();
+        }
+
+        function startGame(board) {
+            draw(board);
+            showMessageBox();
+            hideInvitation();
+        }
+
+        function makeMove() {
+            let from = {
+                Row: $('#row-from').val(),
+                Col: $('#col-from').val()
+            };
+
+            let to = {
+                Row: $('#row-to').val(),
+                Col: $('#col-to').val()
+            };
+
+            game.server.makeMove(from, to);
+        }
+
+        function drawBoard(board) {
+            draw(board);
+        }
+
+        let table = $('table');
+
+        let markedFigure;
+
+        function markElement(e) {
+            let squareToMark;
+
+            if ($(e).is('img')) {
+
+                table.find('img').css('opacity', '1');
+                $(e).css('opacity', '0.5');
+                squareToMark = $(e).parent();
+                console.log(squareToMark);
+            } else {
+                squareToMark = $(e);
+            }
+
+            if (markedFigure === undefined) {
+                markedFigure = squareToMark;
+            } else {
+                sendCommand(squareToMark);
+            }
+
+
+        }
+
+        function sendCommand(e) {
+            console.log(e);
+            if (markedFigure !== undefined) {
+                let markedSquare = $(markedFigure);
+                let toSquare = $(e);
+
+                let from = {
+                    Row: markedSquare.attr('data-row'),
+                    Col: markedSquare.attr('data-col')
+                }
+
+                let to = {
+                    Row: toSquare.attr('data-row'),
+                    Col: toSquare.attr('data-col')
+                }
+
+                console.log(from);
+                console.log(to);
+
+                game.server.makeMove(from, to);
+
+                unmark();
+            }
+        }
+
+        function unmark() {
+            markedFigure = undefined;
+            table.find('img').css('opacity', '1');
+        }
+
+        //TODO: Replace to drawer.js
+        function draw(board) {
+            let table = $('table#board').empty();
+            for (var i = -1; i < board.length + 1; i++) {
+                let row = $('<tr>');
+                for (var j = -1; j < 9; j++) {
+                    let td = $('<td>').css('background-color', 'grey');
+                    if (i === -1 || i === board.length) {
+                        if (j !== -1 && j !== 8) {
+
+                            td.text(`${String.fromCharCode('A'.charCodeAt(0) + j)}`).addClass('board-hor-element');
+                        }
+                    } else if (j === -1 || j === 8) {
+                        td.text(8 - i).addClass('board-vert-element');
+                    } else {
+
+                        td.attr('data-row', i).attr('data-col', j).on('click', function (e) {
+                           // e.stopPropagation();
+                            //if (markedFigure === undefined) {
+                            //    markElement(e.target);
+                            //} else {
+                            //    sendCommand(e.target);
+                            //}
+                            markElement(e.target);
+                        });
+
+                        if (j % 2 == 0) {
+                            if (i % 2 == 0) {
+                                td.css('background-color', 'rgb(234, 217, 133)');
+                            } else {
+                                td.css('background-color', 'brown');
+                            }
+                        }
+                        else {
+                            if (i % 2 != 0) {
+                                td.css('background-color', 'rgb(234, 217, 133)');
+                            } else {
+                                td.css('background-color', 'brown');
+                            }
+                        }
+
+                        if (board[i][j] !== null && board[i][j] !== undefined) {
+
+                            var color = board[i][j].Color == 0 ? "white" : "black";
+
+                            let img = $(`<img src="../../Content/Images/${board[i][j].Name}-${color}.png" />`);
+                            img.addClass(color);
+                            td.append(img);
+                        }
+
+                    }
+
+
+
+                    row.append(td);
+                }
+
+                table.append(row);
+            }
+        }
+
+        game.client.drawBoard = drawBoard;
+        game.client.recieveMessage = recieveMessage;
+        game.client.getMyUsername = getMyUsername;
+        game.client.recieveConfirmation = recieveConfirmation;
+        game.client.startGame = startGame;
+        game.client.sendConfirmation = sendConfirmation;
+        game.client.recieveInvitation = recieveInvitation;
+        game.client.removeUser = removeUser;
+        game.client.listUsers = listUsers;
+
+    });
+
+    function showMessageBox() {
+        $('#message-box').show();
+    }
+
+
+</script>
