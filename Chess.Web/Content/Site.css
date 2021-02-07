@@ -6,7 +6,7 @@ body {
     font-family: Lato, sans-serif;
     display: flex;
     justify-content: center;
-    background: url("../Content/Images/chess-backgr.jpg")
+    /*background: url("../Content/Images/chess-backgr.jpg")*/
 }
 
 /* Set padding to keep content from hitting the edges */
