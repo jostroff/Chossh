@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Web", "Chess.Web\Chess.Web.csproj", "{F189FB9A-9AF5-47B6-8280-B8D3E781B161}"
 EndProject
@@ -16,6 +16,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.UoW", "Chess.UoW\Chess.UoW.csproj", "{31DF3712-5261-4EBD-9CED-454007747B9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Game", "Chess.Game\Chess.Game.csproj", "{DA94D123-ABC0-47DC-813B-B1D2201C8E00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11DA3CED-8865-46B2-A757-54E9114EE95B}"
+	ProjectSection(SolutionItems) = preProject
+		Basic_Layout_of_App.txt = Basic_Layout_of_App.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +59,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0927A0C-1242-4325-A529-5AC8C1B1880F}
 	EndGlobalSection
 EndGlobal

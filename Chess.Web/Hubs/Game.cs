@@ -47,7 +47,10 @@ namespace Chess.Web.Hubs
         {
             IInputProvider inputProvider = new InputProvider();
             IEngine engine = new TwoPlyersEngine(inputProvider);
-            IGameInitializationStrategy strategy = new TwoPlayersInitializationStrategy();
+
+            //The class of initialization.
+            //IGameInitializationStrategy strategy = new TwoPlayersInitializationStrategy();
+            TwoPlayersInitializationChossh strategy = new TwoPlayersInitializationChossh();
             engine.Initialize(strategy, host.Username, guest.Username);
             IOutputProvider outputProvider = new WebOutputProvider();
 

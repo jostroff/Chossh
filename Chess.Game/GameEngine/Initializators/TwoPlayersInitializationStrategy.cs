@@ -16,7 +16,7 @@
         public TwoPlayersInitializationStrategy()
         {
             this.figureTypes = new Type[]
-            {
+            { //Note this is 0 Ro, 1 Kn, 2 Bi, 3 Qu, 4 Ki, 5 Bi, 6 Kn, 7 Ro
                 typeof(Rook), typeof(Knight), typeof(Bishop), typeof(Queen), typeof(King), typeof(Bishop), typeof(Knight), typeof(Rook)
             };
         }
@@ -36,6 +36,7 @@
 
         }
 
+        //Adds figures that aren't pawns.
         private void AddSpecialFigures(IPlayer player, IChessboard board, int row)
         {
             for (int i = 0; i < figureTypes.Length; i++)

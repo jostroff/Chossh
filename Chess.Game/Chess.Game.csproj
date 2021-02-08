@@ -64,6 +64,8 @@
     <Compile Include="Figures\Rook.cs" />
     <Compile Include="GameEngine\Contracts\IEngine.cs" />
     <Compile Include="GameEngine\Contracts\IGameInitializationStrategy.cs" />
+    <Compile Include="GameEngine\Initializators\FigureStarts.cs" />
+    <Compile Include="GameEngine\Initializators\TwoPlayersInitializationChossh.cs" />
     <Compile Include="GameEngine\Initializators\TwoPlayersInitializationStrategy.cs" />
     <Compile Include="GameEngine\TwoPlyersEngine.cs" />
     <Compile Include="Globals\Constants.cs" />

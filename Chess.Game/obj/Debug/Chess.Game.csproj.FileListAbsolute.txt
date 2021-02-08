@@ -8,3 +8,9 @@ C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\TheNextChess\Chess
 C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\TheNextChess\Chess.Game\obj\Debug\Chess.Game.csproj.CoreCompileInputs.cache
 C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\TheNextChess\Chess.Game\obj\Debug\Chess.Game.dll
 C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\TheNextChess\Chess.Game\obj\Debug\Chess.Game.pdb
+C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\Chossh\Chess.Game\bin\Debug\Chess.Game.dll
+C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\Chossh\Chess.Game\bin\Debug\Chess.Game.pdb
+C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\Chossh\Chess.Game\obj\Debug\Chess.Game.csprojAssemblyReference.cache
+C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\Chossh\Chess.Game\obj\Debug\Chess.Game.csproj.CoreCompileInputs.cache
+C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\Chossh\Chess.Game\obj\Debug\Chess.Game.dll
+C:\Users\joshu\Workspace-Documents\workspace\workspace-dotnet\Chossh\Chess.Game\obj\Debug\Chess.Game.pdb

@@ -1,0 +1,22 @@
+Solution: TheNextChess (to change). Folders to be marked with $$. Files with ##.
+
+	Chess.Game$$:
+		**Figures$$... Alter movement.
+		GameEngine$$
+			********Initializators##... Constants of 8. Player count (meh, keep).
+			TwoPlyersEngine##... Start, play, winning condition?? Probably not.
+			--Contracts$$... drive things in other related packages in heirarchy.
+		
+		
+		
+		**Globals$$... Alter 0, 7, 8 to be variable n.
+		Chessboard$$... Might need to not be a grid.
+		Controllers$$
+			Controller##... To alter the col + row.
+		
+		
+		--Probably Not Players$$
+		--Probably not Commons. Except maybe row, col of movement.
+		--Almost certainly not InputProviders$$.
+		--Almost certainly not OutputProviders$$.
+		--Almost certainly not Players$$.
