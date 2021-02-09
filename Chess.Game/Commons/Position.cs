@@ -18,5 +18,10 @@
         public int Col { get; set; }
 
         public int Row { get; set; }
+
+        public override string ToString() 
+        {
+            return "{" + this.Col + ", " + this.Row + "}";
+        }
     }
 }

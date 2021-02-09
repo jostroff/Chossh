@@ -18,15 +18,19 @@ namespace Chess.Game.GameEngine.Initializators
     { //JOstroff - New object structure.
         Type type;
         Position position; //Takes row (side), col (varies by piece).
-        public FigureStarts(Type t, Position p)
+        bool pawnStatus;
+
+        public FigureStarts(Type t, Position p, bool ps)
         {
             type = t;
             position = p;
+            pawnStatus = ps;
         }
         public FigureStarts()
         {
             type = typeof(Pawn);
             position = new Position(0, 0);
+            pawnStatus = true;
         }
         public Type getType()
         {
@@ -35,6 +39,10 @@ namespace Chess.Game.GameEngine.Initializators
         public Position getPosition()
         {
             return position;
+        }
+        public bool isPawn()
+        {
+            return pawnStatus;
         }
     }
 }

@@ -13,5 +13,6 @@
         public Pawn(ChessColor color) : base(color)
         {
         }
+        public 
     }
 }
